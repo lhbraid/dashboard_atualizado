@@ -169,7 +169,7 @@ df_inicial = load_data(INITIAL_DATA_PATH)
 # --- Layout ---
 app.layout = dbc.Container(fluid=True, className="dbc", children=[
     dcc.Store(id='stored-data', data=df_inicial.to_json(date_format='iso', orient='split') if not df_inicial.empty else None),
-        dbc.Row(
+    dbc.Row(
         [
             dbc.Col(
                 dbc.Card(
