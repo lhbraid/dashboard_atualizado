@@ -18,7 +18,7 @@ UPLOAD_DIR = "/home/ubuntu/upload"
 ASSETS_DIR = "/home/ubuntu/dashboard_dpu/assets"
 LOGO_PATH = f"{ASSETS_DIR}/logo-dpu.png"
 # Ajuste aqui para o seu usuário/branch/projeto no GitHub
-INITIAL_DATA_PATH = "https://raw.githubusercontent.com/seu-usuario/seu-repo/main/data/initial_data.xlsx"
+INITIAL_DATA_PATH = "https://raw.githubusercontent.com/lhbraid/dashboard_atualizado/refs/heads/main/dashboard.py/initial_data.xlsx"
 
 COLUMN_MAPPING = {
     'Oficio': 'Ofício',
