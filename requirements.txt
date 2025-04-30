@@ -1,11 +1,10 @@
-dash
 dash-bootstrap-components
-plotly
 pandas
 numpy
 openpyxl
 weasyprint
-kaleido
+seaborn
+matplotlib
 fsspec
 requests
 gunicorn
