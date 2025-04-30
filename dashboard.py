@@ -15,7 +15,7 @@ import requests
 ASSETS_DIR = "assets"
 LOGO_PATH = f"{ASSETS_DIR}/logo-dpu.png"
 # Copie aqui a URL “Raw” do seu Excel no GitHub
-INITIAL_DATA_PATH = "https://raw.githubusercontent.com/seu-usuario/seu-repo/main/data/initial_data.xlsx"
+INITIAL_DATA_PATH = "https://github.com/lhbraid/dashboard_atualizado/blob/main/data/Dados%20SIS%20compilado%20-%2024.04.25.xlsx"
 
 COLUMN_MAPPING = {
     'Oficio': 'Ofício',
