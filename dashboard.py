@@ -169,23 +169,48 @@ df_inicial = load_data(INITIAL_DATA_PATH)
 # --- Layout ---
 app.layout = dbc.Container(fluid=True, className="dbc", children=[
     dcc.Store(id='stored-data', data=df_inicial.to_json(date_format='iso', orient='split') if not df_inicial.empty else None),
-    dbc.Row([
-        dbc.Col(html.Img(src=app.get_asset_url('logo-dpu.png'), height="60px"), width="auto"),
-        dbc.Col(html.H2("Visão geral do SIS - DAT", className="ms-2"), width=True)
-    ], align="center", className="mb-4 mt-4"),
-    dbc.Row(dbc.Col(dbc.Card(dbc.CardBody([
-        dbc.Row([
-            dbc.Col([html.Div("Atualizar Dados:"), dcc.Upload(id='upload-data', children=html.Div(['Arraste ou ', html.A('Selecione um Arquivo Excel')]), style={'border':'1px dashed #ccc','padding':'10px'}, multiple=False), html.Div(id='output-data-upload-status')], width=12, lg=3),
-            dbc.Col(html.Div("Filtros:"), width=12, lg=9)
-        ]),
-        dbc.Row([
-            dbc.Col(dcc.Dropdown(id='filtro-materia', placeholder="Matéria", multi=True), width=6, md=3),
-            dbc.Col(dcc.Dropdown(id='filtro-oficio', placeholder="Ofício", multi=True), width=6, md=3),
-            dbc.Col(dcc.Dropdown(id='filtro-usuario', placeholder="Usuário", multi=True), width=6, md=3),
-            dbc.Col(dcc.RadioItems(id='date-filter-type', options=[{'label':'Dia Único','value':'single'},{'label':'Período','value':'range'}], value='single', inline=True), width=6, md=3)
-        ]),
-        dbc.Row(dbc.Col(html.Div(id='date-filter-inputs'), width=12))
-    ]))), width=12), className="mb-4"),
+        dbc.Row(
+        [
+            dbc.Col(
+                dbc.Card(
+                    dbc.CardBody([
+                        dbc.Row([
+                            dbc.Col([
+                                html.Div("Atualizar Dados:"),
+                                dcc.Upload(
+                                    id='upload-data',
+                                    children=html.Div(['Arraste ou ', html.A('Selecione um Arquivo Excel')]),
+                                    style={'border': '1px dashed #ccc', 'padding': '10px'},
+                                    multiple=False
+                                ),
+                                html.Div(id='output-data-upload-status')
+                            ], width=12, lg=3),
+                            dbc.Col(html.Div("Filtros:"), width=12, lg=9)
+                        ]),
+                        dbc.Row([
+                            dbc.Col(dcc.Dropdown(id='filtro-materia', placeholder="Matéria", multi=True), width=6, md=3),
+                            dbc.Col(dcc.Dropdown(id='filtro-oficio', placeholder="Ofício", multi=True), width=6, md=3),
+                            dbc.Col(dcc.Dropdown(id='filtro-usuario', placeholder="Usuário", multi=True), width=6, md=3),
+                            dbc.Col(dcc.RadioItems(
+                                id='date-filter-type',
+                                options=[
+                                    {'label': 'Dia Único', 'value': 'single'},
+                                    {'label': 'Período', 'value': 'range'}
+                                ],
+                                value='single',
+                                inline=True
+                            ), width=6, md=3)
+                        ]),
+                        dbc.Row(
+                            dbc.Col(html.Div(id='date-filter-inputs'), width=12)
+                        )
+                    ])
+                ),
+                width=12
+            )
+        ],
+        className="mb-4"
+    ),
     dbc.Row([
         dbc.Col([dbc.Card(dbc.CardBody(id='total-pajs')), dbc.Card(dbc.CardBody(id='stats-card'), style={'width':'12cm','height':'9cm','marginTop':'1rem'})], width=12, lg=3),
         dbc.Col(dbc.Card(dbc.CardBody(dcc.Graph(id='grafico-materia'))), width=12, md=6, lg=4),
