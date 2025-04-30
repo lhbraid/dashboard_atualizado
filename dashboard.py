@@ -289,6 +289,6 @@ def update_dashboard(data, mat, ofi, usr, ftype, sdate, start, end, top_n):
     return card, stats_table, img_m, img_o, img_u, img_e
 
 if __name__ == '__main__':
-    app.run_server(debug=False, host='0.0.0.0', port=int(os.environ.get("PORT",8050)))
+    app.run(debug=False, host='0.0.0.0', port=int(os.environ.get("PORT", 8050)))
 
 
