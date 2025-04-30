@@ -5,3 +5,7 @@ pandas
 numpy
 openpyxl
 weasyprint
+kaleido
+fsspec
+requests
+gunicorn
