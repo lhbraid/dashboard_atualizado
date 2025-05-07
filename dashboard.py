@@ -7,6 +7,8 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import io
+import os
+import random
 import base64
 from datetime import datetime
 import requests
@@ -15,7 +17,7 @@ import requests
 ASSETS_DIR = "assets"
 LOGO_PATH = f"{ASSETS_DIR}/logo-dpu.png"
 # Copie aqui a URL “Raw” do seu Excel no GitHub
-INITIAL_DATA_PATH = "https://github.com/lhbraid/dashboard_atualizado/blob/main/data/Dados%20SIS%20compilado%20-%2024.04.25.xlsx"
+INITIAL_DATA_PATH = "https://raw.githubusercontent.com/lhbraid/dashboard_atualizado/main/data/Dados%20SIS%20compilado%20-%2024.04.25.xlsx"
 
 COLUMN_MAPPING = {
     'Oficio': 'Ofício',
@@ -205,7 +207,12 @@ def render_date_filter(ftype, data):
     if not data:
         return ""
     df = pd.read_json(data, orient='split')
-    mind, maxd = df[DATE_COLUMN].min().date(), df[DATE_COLUMN].max().date()
+    if DATE_COLUMN in df.columns and not df[DATE_COLUMN].dropna().empty:
+        mind, maxd = df[DATE_COLUMN].min().date(), df[DATE_COLUMN].max().date()
+    else:
+        today = datetime.today().date()
+        mind, maxd = today, today
+
     if ftype == 'single':
         return dcc.DatePickerSingle(
             id='filtro-data-single',
@@ -289,6 +296,9 @@ def update_dashboard(data, mat, ofi, usr, ftype, sdate, start, end, top_n):
     return card, stats_table, img_m, img_o, img_u, img_e
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=int(os.environ.get("PORT", 8050)))
+    #app.run(debug=False, host='0.0.0.0', port=int(os.environ.get("PORT", 8050)))
+    porta_aleatoria = random.randint(1025, 65535)
+    app.run(debug=True, port=porta_aleatoria)
+
 
 
