@@ -8,5 +8,4 @@ matplotlib
 fsspec
 requests
 gunicorn
-os
 random
