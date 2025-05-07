@@ -8,3 +8,4 @@ matplotlib
 fsspec
 requests
 gunicorn
+flask==2.2.5
